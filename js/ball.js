@@ -1,15 +1,21 @@
 // constructor function object general
-    function MobileObject(x, y , angle, v, size) {
+    function MobileObject(x, y , angle, v, a, size) {
       this.x = x;
       this.y = y;
       this.angle = angle;
       this.v = v;
-      this.speedX = v * Math.cos(this.angle) ;
-      this.speedY = v * Math.sin(this.angle) ;
       this.radius = size / 2;
       this.size = size;
-      this.accX = 0;
-      this.accY = 0;
+      this.accX = a * Math.cos(this.angle);
+      this.accY = a * Math.sin(this.angle);
+
+
+      this.setSpeed = function (v) {
+        this.speedX =  v * Math.cos(this.angle) ;
+        this.speedY =  v * Math.sin(this.angle) ;
+      };
+
+      this.setSpeed(v);
 
       this.accelerate = function (a) {
         var accX = a * Math.cos(this.angle) ;
@@ -31,13 +37,13 @@
 
 // constructor function for balls
     function Ball(x, y, angle, v, diameter, color) {
-        MobileObject.call(this,x, y, angle, v, diameter)  ;
+        MobileObject.call(this,x, y, angle, v, 10, diameter)  ;
 
         //        if (color)
         //        this.color = color;
         //        else
 
-        this.color = 'black';
+        this.color = color;
 
         this.draw = function (ctx) {
             ctx.save();

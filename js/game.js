@@ -76,9 +76,9 @@ var GF = function () {
         ctx.restore();
     }
 
-    
+
     var mainLoop = function (time) {
-        //main function, called each frame 
+        //main function, called each frame
         measureFPS(time);
 
         // number of ms since last frame draw
@@ -106,7 +106,7 @@ var GF = function () {
                 // display Score
                 displayScore();
 
-                // decrease currentLevelTime. 
+                // decrease currentLevelTime.
                 // When < 0 go to next level
                 currentLevelTime -= delta;
 
@@ -193,7 +193,7 @@ var GF = function () {
     }
 
     function updateBalls(delta) {
-        // Move and draw each ball, test collisions, 
+        // Move and draw each ball, test collisions,
         for (var i = 0; i < ballArray.length; i++) {
             var ball = ballArray[i];
 
@@ -221,23 +221,23 @@ var GF = function () {
         }
     }
 
- 
+
 
     function createBalls(numberOfBalls) {
         // Start from an empty array
         ballArray = [];
 
         for (var i = 0; i < numberOfBalls; i++) {
-            // Create a ball with random position and speed. 
+            // Create a ball with random position and speed.
             // You can change the radius
             var ball = new Ball(w * Math.random(),
                     h * Math.random(),
                     (2 * Math.PI) * Math.random(),
                     (80 * Math.random()),
-                    30);
+                    30,'black');
 
-            // Do not create a ball on the player. We augmented the ball radius 
-            // to sure the ball is created far from the monster. 
+            // Do not create a ball on the player. We augmented the ball radius
+            // to sure the ball is created far from the monster.
             if (!circRectsOverlap(monster.x, monster.y,
                     monster.width, monster.height,
                     ball.x, ball.y, ball.radius * 3)) {
@@ -300,5 +300,3 @@ var GF = function () {
         start: start
     };
 };
-
-
